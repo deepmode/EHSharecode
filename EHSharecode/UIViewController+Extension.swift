@@ -20,21 +20,21 @@ public extension UIViewController {
         }
     }
     
-    public func alertWithTitle(title:String, message:String, okTitle:String) {
-        let ac = UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.Alert)
+    public func alertWithTitle(_ title:String, message:String, okTitle:String) {
+        let ac = UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.alert)
         ac.addAction(
-            UIAlertAction(title: okTitle, style: UIAlertActionStyle.Default, handler: { (alertAction) -> Void in /* code goes here */})
+            UIAlertAction(title: okTitle, style: UIAlertActionStyle.default, handler: { (alertAction) -> Void in /* code goes here */})
         )
-        self.presentViewController(ac, animated: true) { () -> Void in}
+        self.present(ac, animated: true) { () -> Void in}
     }
     
-    public func openURLinkInSFViewController(url:NSURL, fromViewController:UIViewController?) {
+    public func openURLinkInSFViewController(_ url:URL, fromViewController:UIViewController?) {
         if let fromVC = fromViewController {
             if #available(iOS 9.0, *) {
-                if UIApplication.sharedApplication().canOpenURL(url) {
+                if UIApplication.shared.canOpenURL(url) {
                     //Important note: make sure to check the url using canOpenURL as SFSafariViewController might crash if it can't open the provide url.
-                    let svc = SFSafariViewController(URL:url,  entersReaderIfAvailable: false)
-                    fromVC.presentViewController(svc, animated: true, completion: nil)
+                    let svc = SFSafariViewController(url:url,  entersReaderIfAvailable: false)
+                    fromVC.present(svc, animated: true, completion: nil)
                     return
                 }
             } else {
@@ -47,7 +47,7 @@ public extension UIViewController {
         }
         // Fallback for all other case
         // Fallback if fromViewController is nil or canOpenURL is false or iOS 9.0 below
-        UIApplication.sharedApplication().openURL(url)
+        UIApplication.shared.openURL(url)
     }
     
 //    func isModal() -> Bool {

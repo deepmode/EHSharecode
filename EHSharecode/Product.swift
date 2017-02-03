@@ -8,9 +8,9 @@
 
 import Foundation
 
-public class Product: CustomStringConvertible {
-    public var name:String?
-    public var price:Double?
+open class Product: CustomStringConvertible {
+    open var name:String?
+    open var price:Double?
     
     public init(name:String, price:Double) {
         //note: no super.init() as it is a root class
@@ -18,8 +18,8 @@ public class Product: CustomStringConvertible {
         self.price = price
     }
     
-    public var description:String {
-        let timestamp = NSDateFormatter.localizedStringFromDate(NSDate(), dateStyle: .MediumStyle, timeStyle: .MediumStyle)
+    open var description:String {
+        let timestamp = DateFormatter.localizedString(from: Date(), dateStyle: .medium, timeStyle: .medium)
 
         return "\(timestamp) \(self.name ?? "") @ \(self.price ?? 0.0)"
     }
